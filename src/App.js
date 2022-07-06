@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { MainPages } from './pages/General'
+import { initializeApp } from 'firebase/app'
+import './App.css'
+import { firebaseConfig } from './configs'
+import Chat from './pages/Chat/pages/Chat'
+
+initializeApp(firebaseConfig)
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path='/' element={<Chat />} />
+        <Route path='/auth/login' element={<MainPages.Pages.Login />} />
+        <Route path='/auth/register' element={<MainPages.Pages.Register />} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
